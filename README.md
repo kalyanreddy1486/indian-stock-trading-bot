@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Indian Stock Trading Bot
+
+A real-time trading analysis tool for NSE stocks with intraday and long-term signals.
+
+## Features
+
+### Real-Time Trading Signals
+
+#### Intraday Mode (9:15 AM - 3:30 PM IST)
+- 🟢 **BUY Signals** when all conditions are met:
+  - RSI < 35
+  - Price > VWAP
+  - Volume > 1.8× 5-min average
+  - EMA(9) > EMA(21)
+- 🔴 **SELL Signals** when any condition is met:
+  - RSI > 65
+  - Price < VWAP
+  - EMA(9) < EMA(21)
+
+#### Long-Term Mode (24/7)
+- 🟢 **BUY Signals**:
+  - 50 EMA > 200 EMA with trend strength %
+  - MACD line > Signal line
+  - Strong upward trend when difference > 5%
+- 🔴 **SELL Signals**:
+  - 50 EMA < 200 EMA with trend strength %
+  - MACD line < Signal line
+  - Strong downward trend when difference < -5%
+- ⚪ **HOLD Signals**:
+  - EMAs in consolidation (< 1% difference)
+  - MACD showing sideways movement
+
+### Technical Analysis
+- Real-time price updates
+- RSI, VWAP, and Volume analysis
+- Multiple EMA crossovers (9, 21, 50, 200)
+- MACD with signal line
+- Support and resistance levels
+- Trend strength indicators
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18+ and npm
 
+### Installation
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd indian-stock-trading-bot
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open http://localhost:8000 in your browser
 
-## Learn More
+### Usage
+1. Enter any NSE stock symbol (e.g., RELIANCE.NS, INFY.NS)
+2. Click "Load" to analyze the stock
+3. View real-time intraday signals during market hours
+4. Check long-term analysis available 24/7
+5. Monitor technical indicators and price movements
+6. Receive automated alerts for trading signals
 
-To learn more about Next.js, take a look at the following resources:
+## Technical Stack
+- Next.js 13 with App Router
+- TypeScript
+- Tailwind CSS
+- ShadcnUI Components
+- Chart.js for technical analysis
+- Yahoo Finance API for real-time data
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Disclaimer
+This tool is for educational and research purposes only. Always conduct your own research and consult with a financial advisor before making investment decisions.
