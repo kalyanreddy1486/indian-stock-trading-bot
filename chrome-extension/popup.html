@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Stock Trading Bot</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      width: 400px;
+      height: 600px;
+      overflow-y: auto;
+    }
+    .signal-card {
+      transition: all 0.3s ease;
+    }
+    .signal-card:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 p-4">
+  <div class="container mx-auto">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800">Indian Stock Trading Bot</h1>
+    
+    <!-- Stock Input -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <div class="flex gap-2">
+        <input type="text" id="stockSymbol" placeholder="Enter stock symbol (e.g., RELIANCE.NS)" 
+               class="flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button id="loadStock" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          Load
+        </button>
+      </div>
+    </div>
+
+    <!-- Stock Price -->
+    <div id="priceCard" class="bg-white rounded-lg shadow-md p-4 mb-4 hidden">
+      <div class="flex justify-between items-center">
+        <div>
+          <h2 id="stockName" class="text-xl font-semibold"></h2>
+          <p id="exchange" class="text-sm text-gray-600">NSE</p>
+        </div>
+        <div class="text-right">
+          <p id="price" class="text-2xl font-bold"></p>
+          <p id="change" class="text-sm"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trading Signals -->
+    <div class="grid gap-4">
+      <!-- Intraday Signal -->
+      <div id="intradaySignal" class="bg-white rounded-lg shadow-md p-4 signal-card">
+        <h3 class="text-lg font-semibold mb-2">Intraday Signal</h3>
+        <div id="intradayContent">
+          <div class="space-y-2">
+            <p id="intradayStatus" class="text-sm font-medium"></p>
+            <div id="intradayIndicators" class="text-sm space-y-1 text-gray-600"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Long Term Signal -->
+      <div id="longTermSignal" class="bg-white rounded-lg shadow-md p-4 signal-card">
+        <h3 class="text-lg font-semibold mb-2">Long Term Signal</h3>
+        <div id="longTermContent">
+          <div class="space-y-2">
+            <p id="longTermStatus" class="text-sm font-medium"></p>
+            <div id="longTermIndicators" class="text-sm space-y-1 text-gray-600"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="tradingLogic.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
